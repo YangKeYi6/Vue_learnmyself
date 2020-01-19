@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../code/lib/2.6.11vue.js"></script>
+
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+
+        <!--使用v-cloak可以解决插值表达式闪烁的问题-->
+        <p v-cloak>=================={{mes}}555555555555555</p>
+        <!--使用v-text没有闪烁问题·但是会覆盖原文本的内容，插值表达式只会替换自己的占位符，不会把整个元素都进行覆盖-->
+        <h4 v-text='mes'>==========</h4>
+        <p v-html='charge'></p>
+        <p v-text='charge'></p>
+        <p>{{charge}}</p>
+        <!--   v-bind:  是vue提供的用于绑定属性·的指令  -->
+        <!--
+              v-bind:  可以用   :+要绑定的属性，可以有相同的效果
+            使用v-bind之后，在要绑定的属性内的值就会被当作js表达式来看，可以写一些js表达式
+        -->
+        <input type="button" value="按钮" v-bind:title="newtitle + '123'">
+        <input type="button" value="按钮" :title="newtitle + '123'" @click="show">
+        <input type="button" value="按钮" :title="newtitle + '123'" v-on:click="show">
+        <!--v-on 用于函数的指令，缩写是： @-->
+    </div>
+    <script src="../code/lib/2.6.11vue.js"></script>
+
+
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                mes: 123,
+                charge: '<h1>这就是差距</h1>',
+                newtitle: '123456title'
+            },
+            methods: { //这里的methods属性中定义了当前vue实例所有可用的方法
+                show: function() {
+                    alert('hello')
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

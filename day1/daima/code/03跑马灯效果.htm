@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../code/lib/2.6.11vue.js"></script>
+    <style>
+        .jkl {
+            font-size: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <!--创建一个Vue可以控制的区域-->
+    <div id="app">
+        <p class="jkl">{{mes}}</p>
+        <input type="button" value="浪起来" @click='start'>
+        <input type="button" value="稳住，低调" @click='stop'>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                mes: '荣陈是小🐖！',
+                setIntervalid: null
+            },
+            methods: {
+                start() {
+                    if (this.setIntervalid === null) {
+                        this.setIntervalid = setInterval(() => {
+                            var first = this.mes.substring(0, 1)
+                            var last = this.mes.substring(1)
+                            this.mes = last + first
+                        }, 300)
+                    } else {
+                        return this.setIntervalid
+                    }
+                },
+                stop() {
+                    clearInterval(this.setIntervalid)
+                    this.setIntervalid = null
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

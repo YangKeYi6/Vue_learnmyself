@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!--1.导入vue的包-->
+    <script src="./lib/2.6.11vue.js"></script>
+</head>
+
+<body>
+    <!--将来new的 vue 实例会控制这个元素中的内容-->
+    <!--VUE实例所控制得这个元素区域，就是我们的 v -->
+    <div id="app">
+        <p>{{ age }}</p>
+        <p v-text=name></p>
+    </div>
+    <script>
+        //2.创建一个vue实例
+        //当我们导入一个包之后，在浏览器中就多了一个vue的构造函数
+        // 注意：我们 new 出来的这个vm对象就是我们mvvm中的vm调度者
+        var vm = new Vue({
+            el: '#app', //表示我们当前vue的这个实例，控制页面上的哪个区域
+            //这里的data就是mvvm中的m，用于保存每个页面中的数据
+            data: { //date属性中存放的就是el中用到的数据
+                age: 200, //通过vue提供的指令很方便得把数据渲染到界面上，程序员不在手动操作dom元素了【前端的vue之类框架，不提倡我们操作dom元素了】
+                name: "vue"
+            }
+        })
+    </script>
+</body>
+
+</html>
