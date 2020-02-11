@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../code/lib/2.6.11vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <p>{{ msg | msgFormat('疯狂','爱你') | test }}</p>
+    </div>
+    <script>
+        Vue.filter('msgFormat', function(msg, arg, arg1) {
+            //正则表达式
+            // 字符串的 replace 方法  第一个参数  除了可写一个 字符串之外 还可以定义一个正则
+            return msg.replace(/单纯/g, arg + arg1)
+        })
+
+        Vue.filter('test', function(msg) {
+            return msg + '123' + '======'
+        })
+
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                msg: '曾经我也是一个单纯的少年，单纯的我，傻傻的问，谁是世界上最单纯的男人'
+            },
+            methods: {}
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../code/lib/2.6.11vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <input type="button" value="修改msg" @click="msg = 'no'">
+        <h3 id="h3">
+            {{ msg }}
+        </h3>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                msg: "123"
+            },
+            methods: {
+                show() {
+                    console.log("13")
+                }
+            },
+            beforeCreate() { //这是我们遇到的第一个生命周期函数，表示实例完全被创建之前会执行它
+                //  console.log(this.msg)
+                // this.show()
+                //注意：在 beforeCreate 生命周期函数执行的时候，data和methods都没有被初始化
+            },
+            created() {
+                // console.log(this.msg)
+                // this.show()
+                // 这是遇到的第二个生命周期函数
+                // 在created函数里面data和methods都已经被初始化好了
+                // 如果要调用data里面的数据或者methods里面的方法，最早在created里面才行
+            },
+            beforeMount() {
+                //这是我们遇到的第三个生命周期函数表示   模板已经在内存中编译完成了   但是尚未把模板渲染到页面中来  
+                // console.log(document.getElementById("h3").innerText)
+                //在执行 beforeMount()函数的时候，页面中的元素还没有真正的被替换过来，只是一些模板字符串
+            },
+            mounted() {
+                //如果要通过某些插件在页面的dom节点了，最早要在mounted()中进行
+                //这是第四个生命周期函数，表示 内存中的模板已经挂载到页面中来了  用户已经可以看到已经渲染好的页面啦
+                // console.log(document.getElementById("h3").innerText)
+                //注意：mounted()是实例创建期间的最后一个函数   当执行mounted()就表示实例已经完全被创建好了·此时，如果没有其它操作的话，这个vm实例就 
+                // 静静的躺在内存里、一动不动
+            },
+            beforeUpdate() { //这时候 表示我们的界面还没有被更新【但是数据已经被更新了】
+                // console.log('界面上的元素的内容是' + document.getElementById("h3").innerText)
+                // console.log('data 中的 msg 数据是：' + this.msg)
+            },
+            updated() {
+                // updated() 事件执行的时候都是最新的
+                console.log('界面上的元素的内容是' + document.getElementById("h3").innerText)
+                console.log('data 中的 msg 数据是：' + this.msg)
+            }
+        });
+    </script>
+</body>
+
+</html>
