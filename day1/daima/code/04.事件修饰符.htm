@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<script src="../code/lib/2.6.11vue.js"></script>
+
+<body>
+    <div id="app">
+
+        <!--用    .stop   阻止冒泡事件发生-->
+        <div class="inner" @click="divHandler">
+            <input type="button" value="点击" @click.stop="btnHandler">
+        </div>
+
+        <!--  用  .prevent   阻止默认事件的发生-->
+        <div>
+            <a href="http://baidu.com" @click.prevent="linkClick">点击到百度</a>
+        </div>
+
+        <!-- 用  .capture 发生事件的反方向 -->
+        <div class="inner" @click.capture="divHandler">
+            <input type="button" value="点击" @click="btnHandler">
+        </div>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+
+            },
+            methods: {
+                divHandler() {
+                    console.log("触发了div 的机制")
+                },
+                btnHandler() {
+                    console.log("触发了  btn  的机制")
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

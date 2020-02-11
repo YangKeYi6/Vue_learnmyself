@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../code/lib/2.6.11vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-model="m">
+        <select v-model="opt">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+        </select>
+        <input type="text" v-model="n">
+        <input type="button" value="=" @click="calc">
+        <input type="text" v-model="result">
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                m: 0,
+                n: 0,
+                opt: "+",
+                result: 0
+            },
+            methods: {
+                calc() {
+                    // switch (this.opt) {
+                    //     case "+":
+                    //         this.result = parseInt(this.m) + parseInt(this.n);
+                    //         break;
+                    //     case "-":
+                    //         this.result = parseInt(this.m) - parseInt(this.n);
+                    //         break;
+                    //     case "*":
+                    //         this.result = parseInt(this.m) * parseInt(this.n);
+                    //         break;
+                    //     case "/":
+                    //         this.result = parseInt(this.m) / parseInt(this.n);
+                    //         break;
+                    // }
+
+
+                    var temp = 'parseInt(this.m)' + this.opt + 'parseInt(this.n)'
+                    this.result = eval(temp)
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

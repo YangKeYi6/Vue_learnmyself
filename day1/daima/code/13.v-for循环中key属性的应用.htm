@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../code/lib/2.6.11vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div>
+            <label for="">id:</label>
+            <input type="text" v-model="m">
+            <label for="">name:</label>
+            <input type="text" v-model="n">
+            <input type="button" value="提交" @click="btn">
+        </div>
+        <!-- 注意：key属性使用的时候要用v-bind绑定，指定key的值 -->
+        <!-- 注意：如果v-for循环出现问题的时候，我们就要使用key属性来锁定 -->
+        <p v-for="(item,key,i) in list" :key="item">
+            <input type="checkbox" name="" id="">{{item.id}}-----{{item.name}}
+        </p>
+
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                m: '',
+                n: '',
+                list: [{
+                    id: 0,
+                    name: 'swk'
+                }, {
+                    id: 1,
+                    name: 'zbj'
+                }, {
+                    id: 2,
+                    name: 'ss'
+                }, {
+                    id: 3,
+                    name: 'blm'
+                }]
+            },
+            methods: {
+                btn() {
+                    this.list.unshift({
+                        id: this.m,
+                        name: this.n
+                    })
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

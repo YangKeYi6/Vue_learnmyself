@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../code/lib/2.6.11vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- v-bind:  只能自己发生改变，不能改变msg本身 -->
+        <!-- v-model 可以实时改变msg的值 -->
+        <input type="text" v-model='msg' style="width: 100%;">
+        <h4>{{msg}}</h4>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                msg: '大家都是好学生，爱敲代码，爱学习，爱思考，简直完美，没瑕疵！'
+            },
+            methods: {}
+        });
+    </script>
+</body>
+
+</html>
